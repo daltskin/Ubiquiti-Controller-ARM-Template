@@ -46,7 +46,7 @@
     "publicIPAddressName": "ubnt-pip",
     "publicIPAddressType": "Static",
     "vmName": "UBNT-Controller",
-    "vmSize": "Standard_A1",
+    "vmSize": "Basic_A1",
     "virtualNetworkName": "ubnt-vnet1",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
@@ -120,12 +120,40 @@
             }
           },
           {
+            "name": "UniFi-STUN",
+            "properties": {
+              "description": "Allow for STUN communication",
+              "protocol": "Udp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "3478",
+              "sourceAddressPrefix": "Internet",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 104,
+              "direction": "Inbound"
+            }
+          },       
+          {
             "name": "UniFi-Mobile-Speedtest",
             "properties": {
-              "description": "Allow for ",
+              "description": "Allow for mobile speed test capability",
               "protocol": "Tcp",
               "sourcePortRange": "*",
-              "destinationPortRange": "8843",
+              "destinationPortRange": "6789",
+              "sourceAddressPrefix": "Internet",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 104,
+              "direction": "Inbound"
+            }
+          },       
+          {
+            "name": "SSH",
+            "properties": {
+              "description": "Allow for remote access",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "22",
               "sourceAddressPrefix": "Internet",
               "destinationAddressPrefix": "*",
               "access": "Allow",
