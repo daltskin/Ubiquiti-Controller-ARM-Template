@@ -24,7 +24,7 @@ sudo ./unifi-5.11.39.sh
 
 Once the scripts have finished running you can disable the SSH port
 
-## Register Access Points to controller
+## Register APs to controller
 
 If your APs are already registered to a controller, ensure they are forgotten on that controller and re-assign them to the new one.  You'll need to be on the same network as them to update them with the new inform address.  You can do this by SSH into the AP using default credentials (ubnt/ubnt) eg:
 
