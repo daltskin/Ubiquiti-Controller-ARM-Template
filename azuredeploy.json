@@ -193,7 +193,7 @@
       "name": "[variables('virtualNetworkName')]",
       "location": "[resourceGroup().location]",
       "dependsOn": [
-        "[resourceId('Microsoft.Network/networkSecurityGroups', [variables('nsg')])]"
+        "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsg'))]"
     ],      
       "properties": {
         "addressSpace": {
