@@ -50,7 +50,9 @@
     "virtualNetworkName": "ubnt-vnet1",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
-    "nsg": "Ubiquiti_Ports"
+    "nsg": "Ubiquiti_Ports",
+    "installationScriptPath": "https://raw.githubusercontent.com/daltskin/Ubiquiti-Controller-ARM-Template/master/",
+    "installationScript": "Install.sh"
   },
   "resources": [
     {
@@ -289,7 +291,33 @@
             "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', variables('storageAccountName')), '2016-01-01').primaryEndpoints.blob)]"
           }
         }
-      }
+      },
+      "resources": [
+        {
+          "name": "InstallUnifiController",
+          "type": "extensions",
+          "location": "[resourceGroup().location]",
+          "apiVersion": "2017-03-30",
+          "dependsOn": [
+            "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+          ],
+          "tags": {
+            "displayName": "InstallUnifiController"
+          },
+          "properties": {
+            "publisher": "Microsoft.Azure.Extensions",
+            "type": "CustomScript",
+            "typeHandlerVersion": "2.0",
+            "autoUpgradeMinorVersion": true,
+            "settings": {
+              "fileUris": [
+                "[concat(variables('installationScriptPath'),variables('installationScript'))]"
+              ],
+              "commandToExecute": "[concat('sh ',variables('installationScript'))]"
+            }
+          }
+        }
+      ]
     }
   ],
   "outputs": {

@@ -8,21 +8,15 @@
 </a>
 
 This template allows you to deploy the necessary infrastructure to run a Ubiquiti Controller. 
-It opens up the necessary firewall ports [https://help.ubnt.com/hc/en-us/articles/218506997]
+It opens up the necessary firewall ports [https://help.ubnt.com/hc/en-us/articles/218506997].  It will also install the Unifi controller software and it's dependencies.
 
-This will deploy a A1 Basic size VM in the resource group location and return the FQDN of the VM.
+This will deploy a A1 Basic size VM in the resource group location, and use the Unifi Controller installation scripts provided by [Glenn Rietveld](https://GlennR.nl).
 
-## Installing Unifi Controller
+The entire provisioning process will take ~12 minutes.  To access the Unifi Controller the url will be in the format: https://{dnsName}.{region}.cloudapp.azure.com
 
-You'll then need to SSH onto the machine and install Unifi Controller.  Easiest way is to use Glenn Rietveld's latest scripts from here: [https://community.ui.com/questions/UniFi-Installation-Scripts-or-UniFi-Easy-Update-Script-or-Ubuntu-16-04-18-04-18-10-19-04-and-19-10-/ccbc7530-dd61-40a7-82ec-22b17f027776] eg:
+## Installing Unifi Controller (Manual)
 
-```
-wget https://get.glennr.nl/unifi/5.11.39/U1604/unifi-5.11.39.sh
-chmod +x unifi-5.11.39.sh
-sudo ./unifi-5.11.39.sh
-```
-
-Once the scripts have finished running you can disable the SSH port
+The ARM template will execute the installation script as part of the provisioning process of the virtual machine.  However, if you need to run this manually for any reason the [./Install.sh] provides an example.
 
 ## Register APs to controller
 
