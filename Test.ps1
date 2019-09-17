@@ -1,5 +1,5 @@
 ﻿cls
-$RGName = "RG-Test1";
+$RGName = "RG-Unifi";
 $DeployLocation = "West Europe";
 $ARMTemplate = "C:\@SourceControl\Github\Ubiquiti-Controller-ARM-Template\AzureDeploy.json"
 $dnsLabelPrefix = "myUnifiVM"
